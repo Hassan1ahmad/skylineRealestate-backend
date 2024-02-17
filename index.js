@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3000',  // Replace with the actual origin of your frontend
+  origin: 'https://skylinerealestate-dibreg7o.b4a.run',  // Replace with the actual origin of your frontend
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type,Authorization',
