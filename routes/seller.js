@@ -107,8 +107,14 @@ router.post('/signUp',[
 //   JWT token
    const Id= await newseller.id
    const sellerToken= jwt.sign({Id},jwtKey)
-   res.cookie('sellerToken',sellerToken,{ httpOnly: false,  secure: true, sameSite: 'None', maxAge: 1296000000, domain: 'b4a.run' })
-    
+   res.cookie('sellerToken', sellerToken, { 
+    httpOnly: false,  
+    secure: true, 
+    sameSite: 'None', 
+    maxAge: 1296000000, 
+    domain: '.skylinerealestate.netlify.app', 
+    path: '/' 
+  });    
    
    res.status(201).json({success:true})
    } catch (error) {
@@ -146,11 +152,13 @@ router.post('/signUp',[
         const Id= await sellerEmail.id
         const sellerToken= jwt.sign({Id},jwtKey)
         // setting jwt to cookie
-        res.cookie('sellerToken', sellerToken, {
-            httpOnly: true,
-            secure: true, sameSite: 'None',
-            maxAge: 1296000000
-            , domain: 'b4a.run'
+        res.cookie('sellerToken', sellerToken, { 
+            httpOnly: false,  
+            secure: true, 
+            sameSite: 'None', 
+            maxAge: 1296000000, 
+            domain: '.skylinerealestate.netlify.app', 
+            path: '/' 
           });
         res.json({success:true})
         } catch (error) {
