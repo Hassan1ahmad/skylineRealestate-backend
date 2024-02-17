@@ -107,7 +107,7 @@ router.post('/signUp',[
 //   JWT token
    const Id= await newseller.id
    const sellerToken= jwt.sign({Id},jwtKey)
-   res.cookie('sellerToken',sellerToken,{ httpOnly: false,  secure: true, sameSite: 'None', maxAge: 1296000000 })
+   res.cookie('sellerToken',sellerToken,{ httpOnly: false,  secure: true, sameSite: 'None', maxAge: 1296000000, domain: 'skylinerealestate.netlify.app' })
     
    
    res.status(201).json({success:true})
@@ -150,6 +150,7 @@ router.post('/signUp',[
             httpOnly: false,
             secure: true, sameSite: 'None',
             maxAge: 1296000000
+            , domain: 'skylinerealestate.netlify.app'
           });
         res.json({success:true})
         } catch (error) {

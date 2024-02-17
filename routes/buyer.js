@@ -66,7 +66,7 @@ router.post('/signUp',cors,[
       const Id =await buyer.id
       const buyerAuthToken = jwt.sign({Id},jwtKey)  
       //        setting up the cookie
-      res.cookie('token', buyerAuthToken, { httpOnly: false, secure: true, sameSite: 'None', maxAge: 1296000000 });
+      res.cookie('token', buyerAuthToken, { httpOnly: false, secure: true, sameSite: 'None', maxAge: 1296000000, domain: 'skylinerealestate.netlify.app' });
       res.status(201).json({success:true});
 
     } catch (error) {
@@ -102,7 +102,7 @@ router.post('/signUp',cors,[
      const Id = buyerEmail.id
      const buyerAuthToken = jwt.sign({Id},jwtKey)
     //   setting it as cookies
-     res.cookie('token', buyerAuthToken, { httpOnly: false, secure: true, sameSite: 'None', maxAge: 1296000000 });
+     res.cookie('token', buyerAuthToken, { httpOnly: false, secure: true, sameSite: 'None', maxAge: 1296000000, domain: 'skylinerealestate.netlify.app' });
      res.status(200).json({success:true})
       } catch (error) {
         res.status(500).json({ success:false,error: 'Internal server error' })
