@@ -111,9 +111,7 @@ router.post('/signUp',[
     httpOnly: false,  
     secure: true, 
     sameSite: 'None', 
-    maxAge: 1296000000, 
-    domain: '.skylinerealestate.netlify.app', 
-    path: '/' 
+    maxAge: 1296000000
   });    
    
    res.status(201).json({success:true})
@@ -157,8 +155,6 @@ router.post('/signUp',[
             secure: true, 
             sameSite: 'None', 
             maxAge: 1296000000, 
-            domain: '.skylinerealestate.netlify.app', 
-            path: '/' 
           });
         res.json({success:true})
         } catch (error) {
