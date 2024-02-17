@@ -107,7 +107,7 @@ router.post('/signUp',[
 //   JWT token
    const Id= await newseller.id
    const sellerToken= jwt.sign({Id},jwtKey)
-   res.cookie('sellerToken',sellerToken,{ httpOnly: false, secure: false, sameSite: 'Strict', maxAge: 1296000000 })
+   res.cookie('sellerToken',sellerToken,{ httpOnly: false,  secure: true, sameSite: 'None', maxAge: 1296000000 })
     
    
    res.status(201).json({success:true})
@@ -148,8 +148,7 @@ router.post('/signUp',[
         // setting jwt to cookie
         res.cookie('sellerToken', sellerToken, {
             httpOnly: false,
-            secure: false,
-            sameSite: 'Strict',
+            secure: true, sameSite: 'None',
             maxAge: 1296000000
           });
         res.json({success:true})
