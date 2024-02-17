@@ -107,7 +107,7 @@ router.post('/signUp',[
 //   JWT token
    const Id= await newseller.id
    const sellerToken= jwt.sign({Id},jwtKey)
-   res.cookie('sellerToken',sellerToken,{ httpOnly: false,  secure: true, sameSite: 'None', maxAge: 1296000000, domain: 'skylinerealestate-dibreg7o.b4a.run' })
+   res.cookie('sellerToken',sellerToken,{ httpOnly: false,  secure: true, sameSite: 'None', maxAge: 1296000000, domain: 'b4a.run' })
     
    
    res.status(201).json({success:true})
@@ -150,7 +150,7 @@ router.post('/signUp',[
             httpOnly: true,
             secure: true, sameSite: 'None',
             maxAge: 1296000000
-            , domain: 'skylinerealestate-dibreg7o.b4a.run'
+            , domain: 'b4a.run'
           });
         res.json({success:true})
         } catch (error) {
