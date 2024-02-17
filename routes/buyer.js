@@ -66,7 +66,7 @@ router.post('/signUp',cors,[
       const Id =await buyer.id
       const buyerAuthToken = jwt.sign({Id},jwtKey)  
       //        setting up the cookie
-      res.cookie('token', buyerAuthToken, { httpOnly: false, secure: true, sameSite: 'None', maxAge: 1296000000, domain: '.b4a.run' });
+      res.cookie('token', buyerAuthToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 1296000000, domain: '.b4a.run' });
       res.status(201).json({success:true});
 
     } catch (error) {
@@ -102,7 +102,7 @@ router.post('/signUp',cors,[
      const Id = buyerEmail.id
      const buyerAuthToken = jwt.sign({Id},jwtKey)
     //   setting it as cookies
-     res.cookie('token', buyerAuthToken, { httpOnly: false, secure: true, sameSite: 'None', maxAge: 1296000000, domain: '.b4a.run' });
+     res.cookie('token', buyerAuthToken, { httpOnly:true, secure: true, sameSite: 'None', maxAge: 1296000000, domain: '.b4a.run' });
      res.status(200).json({success:true})
       } catch (error) {
         res.status(500).json({ success:false,error: 'Internal server error' })
@@ -181,7 +181,18 @@ router.post('/signUp',cors,[
 
         }
            
-      })
+      });
+
+       // ====================logout
+    router.get('/logout', (req, res) => {
+      try {
+          res.cookie('token', '', { expires: new Date(0), httpOnly: true ,secure: true, sameSite: 'None',});
+          res.status(200).send('Cookie removed');
+        } catch (error) {
+          console.error('Error while clearing cookie:', error);
+          res.status(500).send('Internal server error');
+        }
+    });
 
 
 module.exports = router
