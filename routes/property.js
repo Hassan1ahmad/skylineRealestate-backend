@@ -69,10 +69,10 @@ router.post('/addProperty',upload.array('images'),multererror,[
     body('name').isString().notEmpty().withMessage('Name is required'),
     body('description').isString().notEmpty().withMessage('Description is required'),
     // Custom validation for bedrooms and kitchen based on property type
-   body('bedrooms').isInt({ min: 1}) .withMessage(' must be a positive integer'),
-    body('kitchen').isInt({ min: 1}) .withMessage(' must be a positive integer'),
+   body('bedrooms').isInt({ min: 0}) .withMessage(' must be a positive integer'),
+    body('kitchen').isInt({ min: 0}) .withMessage(' must be a positive integer'),
     // floor, built area ,year of contruction
-    body('floor').isInt({ min: 1 }).withMessage('Floor must be a positive integer'),
+    body('floor').isInt({ min: 0 }).withMessage('Floor must be a positive integer'),
     body('builtArea').isInt({ min: 1 }).withMessage('Built Area must be a positive integer'),
     body('yearOfConstruction').isInt({ min: 1800, max: new Date().getFullYear() }).withMessage('Invalid year of construction'),
     //    status 

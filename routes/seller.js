@@ -229,13 +229,16 @@ router.post('/signUp',[
             const profilePhotoRef = ref(storage, `skyline-SellerProfile-images/${sellerProfile.profilePhoto.name}`);
             await deleteObject(profilePhotoRef);
 
-            sellerProfile.profilePhoto = {
-                url: downloadURL,
-                name: `${imagename}_${dateTime}`
-            };
         }
+    }
+
+            if(req.file){
+                sellerProfile.profilePhoto = {
+                    url: downloadURL,
+                    name: `${imagename}_${dateTime}`
+                };
             }
-         
+                
              // Update profile details based on the request body
             if (req.body.userType) sellerProfile.userType = req.body.userType;
             if (req.body.homeAddress) sellerProfile.homeAddress = req.body.homeAddress;
