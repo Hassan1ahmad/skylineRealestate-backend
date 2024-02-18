@@ -8,6 +8,7 @@ const verifyTokenofS = require('../middleware/verifyTokenofS');
 const { getStorage, ref, getDownloadURL, uploadBytesResumable,deleteObject } = require("firebase/storage");
 const multer = require("multer");
 const { initializeApp } = require("firebase/app");
+const cors = require('../middleware/cors');
 require('dotenv').config();
 
 
@@ -177,7 +178,7 @@ router.post('/signUp',[
 
     // ===================updaating  seller details using :/api/seller/uploadProfile============================
 
-    router.put('/updateProfile',verifyTokenofS,upload.single('photo'), [
+    router.put('/updateProfile',cors,verifyTokenofS,upload.single('photo'), [
         body('userType').optional().isIn(['House Owner', 'Real Estate Agent']).withMessage('Invalid user type'),
         body('homeAddress').optional().isString().withMessage('Address must be a string'),
         body('phoneNumber').optional().isMobilePhone(['en-PK']).withMessage('Invalid phone number'),
@@ -257,7 +258,7 @@ router.post('/signUp',[
          
 
     // ====================logout
-    router.get('/logout', (req, res) => {
+    router.get('/logout',cors ,(req, res) => {
         try {
             res.cookie('sellerToken', '', { expires: new Date(0), httpOnly: true });
             res.status(200).send('Cookie removed');

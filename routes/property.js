@@ -61,7 +61,7 @@ const multererror= ((err, req, res, next) => {
 
 
 // =============================add new property using: /api/listing/addproperty
-router.post('/addProperty',upload.array('images'),multererror,[
+router.post('/addProperty',cors,upload.array('images'),multererror,[
     // ====validation starts here
     // type
     body('type').isIn(['Apartment', 'Building', 'Chateau', 'Commercial Property', 'Country House', 'Land', 'Office', 'Parking Space or Garage', 'Storage Room', 'TownHouse','House']).withMessage('Invalid property type'),
@@ -159,7 +159,7 @@ router.post('/addProperty',upload.array('images'),multererror,[
 
 // =============================delete property using: /api/listing/deletePorperty/:propertyId
 
-    router.delete('/deletePorperty/:propertyId',verifyTokenofS,async(req,res)=>{
+    router.delete('/deletePorperty/:propertyId',verifyTokenofS,cors,async(req,res)=>{
         const {propertyId} = req.params
         if(!propertyId){
             return res.status(404).json({ error: 'Property not found' });
