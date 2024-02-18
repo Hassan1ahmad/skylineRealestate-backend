@@ -260,7 +260,9 @@ router.post('/signUp',[
     // ====================logout
     router.get('/logout',cors ,(req, res) => {
         try {
-            res.cookie('sellerToken', '', { expires: new Date(0), httpOnly: true });
+            res.cookie('sellerToken', '', { expires: new Date(0), httpOnly: true,  
+                secure: true, 
+                sameSite: 'None' });
             res.status(200).send('Cookie removed');
           } catch (error) {
             console.error('Error while clearing cookie:', error);
